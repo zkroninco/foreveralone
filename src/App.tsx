@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { WalletMultiButton } from '@solana/wallet-adapter-react-ui'
 import heroImageFace from '../forever-aloneface.jpg'
 import { Countdown } from './components/Countdown'
@@ -24,19 +24,19 @@ const highlightCards = [
     title: 'OG Meme Energy',
     stat: '2009',
     badge: 'Rage Comic Era',
-    copy: 'Born on image boards, Forever Alone became the anthem for every inside joke about being the last invite. Now it lives on-chain.'
+    copy: 'I drew this face for a rage comic in 2009. It was a different time on the internet. Now, that same energy is on-chain.'
   },
   {
     title: 'Community Driven',
     stat: '100%',
     badge: 'Fair Launch',
-    copy: 'No presale, no team allocation. Just pure meme energy powered by the loneliest community on Solana.'
+    copy: 'I launched this with no presale and no team allocation. It’s all for the community, powered by the loneliest people on Solana.'
   },
   {
     title: 'Forever Alone',
     stat: '∞',
     badge: 'No Utility',
-    copy: 'This is a memecoin. There is no roadmap. There is no utility. Just vibes and the eternal struggle of being alone.'
+    copy: 'This is a memecoin. I didn’t build in a roadmap or any utility. It’s about the vibes and the eternal struggle of being alone.'
   }
 ]
 
@@ -88,6 +88,29 @@ const quickLinks = [
   }
 ]
 
+const forumThreads = [
+  {
+    title: 'Forever Alone launch thread',
+    replies: '420 replies',
+    author: 'OP · berandito',
+    status: 'Pinned · 12:03 AM'
+  },
+  {
+    title: 'Best lonely pump memes 2024',
+    replies: '128 replies',
+    author: 'mod · Nova P.',
+    status: 'Yesterday'
+  },
+  {
+    title: 'Share your Forever Alone fan art',
+    replies: '64 replies',
+    author: 'artist · Dr. Mei Chen',
+    status: 'Mar 3'
+  }
+]
+
+const THEME_STORAGE_KEY = 'foreveralone-theme'
+
 function App() {
   const countdownTarget = useMemo(
     () => new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(),
@@ -102,6 +125,15 @@ function App() {
       }),
     []
   )
+  const [theme, setTheme] = useState<'dark' | 'light'>(() => {
+    if (typeof window === 'undefined') return 'dark'
+    return (window.localStorage.getItem(THEME_STORAGE_KEY) as 'dark' | 'light') || 'dark'
+  })
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme)
+    window.localStorage.setItem(THEME_STORAGE_KEY, theme)
+  }, [theme])
 
   return (
     <div className="page-shell">
@@ -128,6 +160,14 @@ function App() {
           <a className="nav-link" href="#community">Community</a>
         </nav>
         <div className="wallet-button-wrapper">
+          <button
+            type="button"
+            className="theme-toggle"
+            onClick={() => setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'))}
+            aria-label="Toggle theme"
+          >
+            {theme === 'dark' ? 'Light' : 'Dark'}
+          </button>
           <WalletMultiButton />
         </div>
       </header>
@@ -141,12 +181,7 @@ function App() {
               <span className="gradient-text">on-chain</span>.
             </h1>
             <p className="lede">
-              Forever Alone ($ALONE) — the classic rage comic face I drew back on image boards as{' '}
-              <a href="https://x.com/berandito" target="_blank" rel="noreferrer" className="creator-link">
-                @berandito
-              </a>
-              {' '}that defined internet loneliness is now a token on Solana. 
-              No utility, no roadmap. Just pure meme energy and the eternal struggle of being alone.
+              I drew this face a long time ago. It was for a rage comic, back when the internet was a weirder, smaller place. I called it Forever Alone. It was my way of saying "I'm the odd one out," and it blew up. Now, I'm bringing it to Solana. No roadmap, no utility, just vibes.
             </p>
             <div className="hero-actions">
               <div className="hero-ctas">
@@ -168,6 +203,8 @@ function App() {
                 <p>Fair launch · No presale · 100% community</p>
               </div>
             </div>
+            <p className="hero-archive-label blink">Found in a dusty /rage/ archive · 2009 logs intact</p>
+
             <dl className="hero-stat-grid">
               <div className="hero-stat-card">
                 <dt>Symbol</dt>
@@ -210,7 +247,7 @@ function App() {
           </div>
         </section>
 
-        <section className="token-hub" id="token">
+        <section className="token-hub panel" id="token">
           <div className="token-hub-heading">
             <div>
               <p className="eyebrow">Token intel</p>
@@ -348,16 +385,35 @@ function App() {
           </div>
         </section>
 
-        <section className="story" id="story">
+        <section className="forum-board" aria-label="Forever Alone forum">
+          <div className="section-heading">
+            <p className="eyebrow">Forum archive</p>
+            <h2>Threads from the forgotten boards</h2>
+            <p>Pure meme chatter preserved in grey tab sections just like the old /rage/ vibe.</p>
+          </div>
+          <div className="thread-list">
+            {forumThreads.map((thread) => (
+              <article className="thread-card" key={thread.title}>
+                <div className="thread-title">
+                  <span className="thread-pill">ALONE</span>
+                  <h3>{thread.title}</h3>
+                </div>
+                <div className="thread-meta">
+                  <span>{thread.replies}</span>
+                  <span>{thread.author}</span>
+                  <span className="thread-status">{thread.status}</span>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="story panel" id="story">
           <div className="section-heading">
             <p className="eyebrow">Origin Story</p>
             <h2>Melancholy, but make it iconic.</h2>
             <p>
-              Forever Alone started as my scribbled rage comic (I’m{' '}
-              <a href="https://x.com/berandito" target="_blank" rel="noreferrer" className="creator-link">
-                @berandito
-              </a>
-              ). My raw linework captured the universal feeling of being the odd one out. Now it lives on-chain as a Solana memecoin.
+              This all started with a doodle. I was making a rage comic and I drew this face, Forever Alone, to capture that feeling of being left out. It was raw, just a simple drawing, but it resonated with people. It became a symbol for feeling alone, and now I'm bringing that same energy to Solana.
             </p>
           </div>
           <div className="story-grid">
@@ -371,16 +427,7 @@ function App() {
                 <p>{item.copy}</p>
               </article>
             ))}
-            <article className="glass-card creator-card">
-            <div className="card-heading">
-              <span className="badge">Original Creator</span>
-              <span className="stat">2009</span>
-            </div>
-            <h3>Created by me (@berandito)</h3>
-            <p>
-              I created the Forever Alone meme back when rage comics were the weirdest way to say “I’m alone,” and it became one of the most iconic faces of that era.
-            </p>
-            </article>
+
           </div>
         </section>
 
@@ -402,7 +449,7 @@ function App() {
           </div>
         </section>
 
-        <section className="community" id="community">
+        <section className="community panel" id="community">
           <div className="section-heading">
             <p className="eyebrow">Community Receipts</p>
             <h2>Loners, unite (ironically).</h2>
