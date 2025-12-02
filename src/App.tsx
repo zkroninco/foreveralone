@@ -13,7 +13,7 @@ import './mobile.css'
 const tokenInfo = {
   symbol: 'ALONE',
   name: 'Forever Alone',
-  contract: 'ALONExxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx', // Placeholder - replace with actual contract
+  contract: import.meta.env.VITE_ALONE_CONTRACT_ADDRESS || 'ALONExxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx', // Use env var or placeholder
   supply: '1,000,000,000',
   chain: 'Solana',
   launchDate: '2024-12-31T00:00:00Z' // Update with your actual launch date/time (ISO format)

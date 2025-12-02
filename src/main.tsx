@@ -11,7 +11,7 @@ import App from './App.tsx'
 
 function WalletApp() {
   const network = WalletAdapterNetwork.Mainnet
-  const endpoint = useMemo(() => clusterApiUrl(network), [network])
+  const endpoint = useMemo(() => import.meta.env.VITE_SOLANA_RPC_HOST || clusterApiUrl(network), [network])
 
   const wallets = useMemo(
     () => [
