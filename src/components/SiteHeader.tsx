@@ -20,7 +20,7 @@ const SiteHeader: React.FC<SiteHeaderProps> = ({ theme, setTheme, creatorHandle 
         </span>
         <div>
           <h1 className="logo-title gradient-text">Forever Alone</h1>
-          <p className="logo-subtitle gradient-subtitle">The Creator's Blog</p>
+          <p className="logo-subtitle gradient-subtitle">Blog by {creatorHandle}</p>
         </div>
       </div>
       <nav className="primary-nav" aria-label="Primary navigation">
