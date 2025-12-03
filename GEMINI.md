@@ -1,16 +1,16 @@
-# Project: Forever Alone (Community Blog)
+# Project: Forever Alone (The Creator's Blog)
 
 ## Project Overview
 
-This project is a React, TypeScript, and Vite-based web application for a community-driven blog, inspired by early 2010s Reddit-style social platforms. It aims to provide a nostalgic user experience, focusing on user-generated content, discussions, and a simple, functional interface.
+This project is a React, TypeScript, and Vite-based web application for a personal blog, inspired by early 2010s Reddit-style social platforms. It serves as the official platform for the creator of the "Forever Alone" meme to share their personal journey, the meme's unexpected creation, its explosion in popularity, and reflections from their unique perspective.
 
-The application emphasizes community interaction, blog post creation, and engagement, moving away from its previous DApp focus.
+The application emphasizes the creator's narrative, personal anecdotes, and direct communication, offering a nostalgic user experience through its simple, functional interface. It has transitioned from a DApp focus to become a personal chronicle of a viral phenomenon.
 
 Key features and technologies include:
 
 *   **Frontend:** React with TypeScript, bundled and served using Vite.
-*   **Thematic Content:** Displays blog posts, user comments, and community discussions.
-*   **Components:** Leverages various custom components for post display, user profiles, and interactive elements.
+*   **Thematic Content:** Displays blog posts and reflections directly from the "Forever Alone" meme's creator, focusing on their experiences and insights.
+*   **Components:** Leverages various custom components for blog post display, a personal "about" section, and interactive elements designed for a creator's platform.
 *   **Styling:** Uses `App.css` and `mobile.css`, designed to evoke the aesthetic of early 2010s social platforms, indicating a responsive design.
 *   **Icons:** Employs `react-icons` for various interface elements.
 

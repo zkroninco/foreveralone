@@ -1,0 +1,18 @@
+/* Footer Styles */
+.site-footer {
+  background-color: var(--reddit-blue);
+  border-top: 1px solid var(--reddit-border-blue);
+  padding: 20px;
+  text-align: center;
+  font-size: 12px;
+  color: var(--reddit-black);
+  margin-top: 30px;
+}
+
+.site-footer p {
+  margin: 5px 0;
+}
+
+.footer-link {
+  font-weight: bold;
+}

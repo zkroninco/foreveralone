@@ -1,79 +1,75 @@
-import './App.css'
+import { useEffect, useState } from 'react';
+import './styles/base.css';
+import './styles/theme.css';
+import './styles/header.css';
+import './styles/hero.css';
+import './styles/sections.css';
+import './styles/footer.css';
+
+import SiteHeader from './components/SiteHeader';
+import HeroSection from './components/HeroSection';
+import StorySection from './components/StorySection';
+import ContactSection from './components/ContactSection';
+import SiteFooter from './components/SiteFooter';
+
+// Constants for blog content
+const blogContent = {
+  title: 'Forever Alone: Viral?',
+  creatorHandle: '@berandito',
+  archiveLabel: 'Found in a dusty /rage/ archive · 2009 logs intact',
+  heroQuote: '"Every artist hopes their work resonates. This one... exploded."',
+  pillGrid: ['lol', 'comic', 'viral'],
+};
+
+const highlightCards = [
+  {
+    title: 'The Doodle',
+    stat: '2009',
+    badge: 'Rage Comic Era',
+    copy: 'It started as nothing more than a fast sketch for a comic. I never expected it to turn into a recognizable symbol for isolation across the early web.'
+  },
+  {
+  title: 'Unexpected Virality',
+    stat: 'Everywhere',
+    badge: 'Unstoppable Spread',
+    copy: 'From tiny forums to major sites, the face kept showing up. Watching a doodle jump platforms and communities on its own felt unreal, like it detached from me and wandered into the world by itself.'
+  },
+  {
+    title: 'My Story',
+    stat: 'Personal',
+    badge: 'Reflections',
+    copy: 'This space is where I’ve been collecting the ups, downs, and odd moments of seeing a meme grow far beyond its origin. The experience has been strange, surprising, and honestly a bit overwhelming.'
+  }
+];
+
+const THEME_STORAGE_KEY = 'foreveralone-theme';
 
 function App() {
+  const [theme, setTheme] = useState<'dark' | 'light'>(() => {
+    if (typeof window === 'undefined') return 'dark';
+    return (window.localStorage.getItem(THEME_STORAGE_KEY) as 'dark' | 'light') || 'dark';
+  });
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+    window.localStorage.setItem(THEME_STORAGE_KEY, theme);
+  }, [theme]);
+
   return (
-    <div>
-      <div id="header">
-        <div id="header-img" aria-label="Reddit Home"></div>
-        <ul className="tab-menu">
-          <li className="selected"><a href="#">hot</a></li>
-          <li><a href="#">new</a></li>
-          <li><a href="#">rising</a></li>
-          <li><a href="#">controversial</a></li>
-          <li><a href="#">top</a></li>
-          <li><a href="#">gilded</a></li>
-        </ul>
-      </div>
-      <div className="content">
-        <div className="main-content">
-          <div className="post">
-            <div className="voting">
-              <div className="arrow up"></div>
-              <div className="score">1337</div>
-              <div className="arrow down"></div>
-            </div>
-            <div className="thumbnail">
-              <img src="https://i.imgur.com/626O22F.jpeg" alt="Forever Alone" style={{ width: '70px', height: '70px' }} />
-            </div>
-            <div className="entry">
-              <p className="title">
-                <a href="#">I made this face for a rage comic... now it's everywhere.</a>
-              </p>
-              <p className="tagline">
-                submitted 12 hours ago by <a href="#" className="author">berandito</a> to <a href="#" className="subreddit">r/fffffffuuuuuuuuuuuu</a>
-              </p>
-              <ul className="buttons">
-                <li><a href="#">312 comments</a></li>
-                <li><a href="#">share</a></li>
-                <li><a href="#">save</a></li>
-                <li><a href="#">hide</a></li>
-                <li><a href="#">report</a></li>
-              </ul>
-            </div>
-          </div>
+    <div className="page-shell">
+      <div className="grid-glow" aria-hidden="true" />
 
-          <div className="post">
-            <div className="voting">
-              <div className="arrow up"></div>
-              <div className="score">420</div>
-              <div className="arrow down"></div>
-            </div>
-            <div className="thumbnail">
-            </div>
-            <div className="entry">
-              <p className="title">
-                <a href="#">[AMA] I'm the guy who drew the 'Forever Alone' face. AMA.</a>
-              </p>
-              <p className="tagline">
-                submitted 2 hours ago by <a href="#" className="author">berandito</a> to <a href="#" className="subreddit">r/IAmA</a>
-              </p>
-              <ul className="buttons">
-                <li><a href="#">1024 comments</a></li>
-                <li><a href="#">share</a></li>
-                <li><a href="#">save</a></li>
-                <li><a href="#">hide</a></li>
-                <li><a href="#">report</a></li>
-              </ul>
-            </div>
-          </div>
+      <SiteHeader theme={theme} setTheme={setTheme} creatorHandle={blogContent.creatorHandle} />
 
-        </div>
-        <div className="sidebar">
-          {/* Sidebar content will go here */}
-        </div>
-      </div>
+      <main>
+        <HeroSection blogContent={blogContent} />
+        <StorySection highlightCards={highlightCards} />
+        <ContactSection signatureText="Thanks for visiting my corner of the internet. Stay real, stay memeing. - B." />
+      </main>
+
+      <SiteFooter creatorHandle={blogContent.creatorHandle} />
     </div>
-  )
+  );
 }
 
 export default App;

@@ -1,0 +1,82 @@
+/* Header Styles - Adapted from DApp */
+.site-header {
+  background-color: var(--reddit-blue); /* Reddit blue background */
+  border-bottom: 1px solid var(--reddit-border-blue); /* Reddit border */
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+
+.logo-lockup {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-icon-image {
+  width: 40px;
+  height: auto;
+  border-radius: 4px; /* Slightly rounded for 2010s feel */
+}
+
+.logo-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--text-color-base); /* Black for title */
+  margin: 0;
+}
+
+.logo-subtitle {
+  font-size: 12px;
+  color: var(--reddit-grey-text);
+  margin: 0;
+}
+
+/* Navigation Styles */
+.primary-nav {
+  display: flex;
+  gap: 15px;
+  margin: 0 20px; /* Adjust margin for spacing */
+}
+
+.nav-link {
+  color: var(--text-color-base);
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 16px; /* Increased font size */
+  padding: 8px 15px; /* Increased padding */
+  transition: color 0.2s ease-in-out;
+}
+
+.nav-link:hover {
+  color: var(--color-primary); /* Reddit orange on hover */
+}
+
+.nav-link:visited {
+  color: var(--text-color-base); /* Ensure visited links match default nav link color */
+}
+
+/* Theme Toggle Button */
+.wallet-button-wrapper { /* Renamed for theme toggle, kept old class for compatibility */
+  display: flex;
+  align-items: center;
+}
+
+.theme-toggle {
+  background-color: var(--reddit-white);
+  border: 1px solid var(--reddit-border-blue);
+  padding: 8px 15px; /* Consistent padding with nav-link */
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px; /* Increased font size */
+  font-weight: bold;
+  color: #000000; /* Force black text for contrast in dark mode */
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.theme-toggle:hover {
+  background-color: var(--reddit-blue-dark);
+  color: var(--reddit-white);
+}
