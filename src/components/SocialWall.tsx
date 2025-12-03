@@ -1,21 +1,21 @@
 const samplePosts = [
   {
     id: 1,
-    handle: '@ForeverAloneSOL',
+    handle: '@berandito',
     time: '2m ago',
-    text: 'Fair launch, no supply cap drama. Just memes and ridiculous $ALONE vibes.'
+    text: 'New funny face from berandito just dropped! So relatable. What do you guys think?'
   },
   {
     id: 2,
-    handle: '@berandito',
+    handle: '@ragedoodler',
     time: '12m ago',
-    text: 'Saw six Pump.Fun alerts this morning and all of them were just me laughing at being lonely.'
+    text: 'Just doodling new rage comics. This new face feels kinda special. Maybe it\'ll go viral?'
   },
   {
     id: 3,
-    handle: '@PumpFunAlerts',
+    handle: '@MemeHunter',
     time: '22m ago',
-    text: 'Jupiter markets lit the signal for $ALONE. No roadmap but plenty of friends missing status updates.'
+    text: 'Found this new face on a forum. It\'s awesome! Hope more people start using it in their comics.'
   }
 ]
 
@@ -23,8 +23,8 @@ export function SocialWall() {
   return (
     <div className="social-wall">
       <div className="social-wall-header">
-        <p className="eyebrow">Social Wall</p>
-        <span>Live vibes</span>
+        <p className="eyebrow">Forum Chatter</p>
+        <span>Real Talk</span>
       </div>
       <div className="social-wall-grid">
         {samplePosts.map((post) => (
